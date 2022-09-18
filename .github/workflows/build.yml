@@ -1,0 +1,32 @@
+name: Build Paper
+on:
+  workflow_dispatch:
+    inputs:
+      hash:
+        description: Hash to build
+        required: true
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                java: [17]
+            fail-fast: true
+        steps:
+            - uses: actions/checkout@v2.4.0
+            - name: JDK ${{ matrix.java }}
+              uses: actions/setup-java@v3.1.0
+              with:
+                  java-version: ${{ matrix.java }}
+                  cache: 'gradle'
+                  distribution: 'temurin'
+            - name: Clone, patch and build
+              run: |                   
+                  git config --global user.email "no-reply@github.com"
+                  git config --global user.name "Github Actions"
+                  git clone https://github.com/PaperMC/Paper.git
+                  cd Paper
+                  git checkout ${{ github.event.inputs.hash }}
+                  ./gradlew applyPatches --stacktrace
+                  ./gradlew build --stacktrace
