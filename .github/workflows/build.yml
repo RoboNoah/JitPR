@@ -26,6 +26,6 @@ jobs:
                   git config --global user.name "Github Actions"
                   git clone https://github.com/PaperMC/Paper.git
                   cd Paper
-                  git fetch upstream pull/${{ github.event.inputs.pr }}/head && git checkout FETCH_HEAD
+                  git fetch origin pull/${{ github.event.inputs.pr }}/head && git checkout FETCH_HEAD
                   ./gradlew applyPatches --stacktrace
                   ./gradlew build --stacktrace
