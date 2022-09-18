@@ -19,7 +19,6 @@ jobs:
               uses: actions/setup-java@v3.1.0
               with:
                   java-version: ${{ matrix.java }}
-                  cache: 'gradle'
                   distribution: 'temurin'
             - name: Clone, patch and build
               run: |                   
