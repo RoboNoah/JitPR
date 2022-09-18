@@ -29,3 +29,13 @@ jobs:
                   git fetch origin pull/${{ github.event.inputs.pr }}/head && git checkout FETCH_HEAD
                   ./gradlew applyPatches --stacktrace
                   ./gradlew build --stacktrace
+                  ./gradlew createMojmapPaperclipJar --stacktrace
+                  ./gradlew createReobfPaperclipJar --stacktrace
+            - uses: actions/upload-artifact@v3
+              with:
+                name: api
+                path: Paper-API/build/libs/
+            - uses: actions/upload-artifact@v3
+              with:
+                name: paperclips
+                path: build/libs/
