@@ -26,8 +26,8 @@ jobs:
                   git config --global user.name "Github Actions"
                   git clone https://github.com/PaperMC/Paper.git
                   cd Paper
-                  git am -3 < ../repo.patch
                   git fetch origin pull/${{ github.event.inputs.pr }}/head && git checkout FETCH_HEAD
+                  git am -3 < ../repo.patch
                   ./gradlew applyPatches --stacktrace
                   ./gradlew build Paper-API:publish --stacktrace
                   ./gradlew createMojmapPaperclipJar --stacktrace
