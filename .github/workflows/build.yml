@@ -26,15 +26,16 @@ jobs:
                   git config --global user.name "Github Actions"
                   git clone https://github.com/PaperMC/Paper.git
                   cd Paper
+                  git am -3 < ../repo.patch
                   git fetch origin pull/${{ github.event.inputs.pr }}/head && git checkout FETCH_HEAD
                   ./gradlew applyPatches --stacktrace
-                  ./gradlew build --stacktrace
+                  ./gradlew build Paper-API:publish --stacktrace
                   ./gradlew createMojmapPaperclipJar --stacktrace
                   ./gradlew createReobfPaperclipJar --stacktrace
             - uses: actions/upload-artifact@v3
               with:
                 name: api
-                path: Paper/Paper-API/build/libs/
+                path: Paper/Paper-API/maven-repository
             - uses: actions/upload-artifact@v3
               with:
                 name: paperclips

@@ -1,0 +1,24 @@
+From 1c309f44d919b4dd378956ecb43fe677ea16bf64 Mon Sep 17 00:00:00 2001
+From: Noah van der Aa <ndvdaa@gmail.com>
+Date: Sun, 18 Sep 2022 18:59:06 +0200
+Subject: [PATCH] Change deployment repo
+
+---
+ build.gradle.kts                     |   3 +-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/build.gradle.kts b/build.gradle.kts
+index 5341c25fb..04f155234 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -123,9 +123,8 @@ publishing {
+ allprojects {
+     publishing {
+         repositories {
+-            maven("https://repo.papermc.io/repository/maven-snapshots/") {
++            maven(layout.projectDirectory.dir("maven-repository")) {
+                 name = "paperSnapshots"
+-                credentials(PasswordCredentials::class)
+             }
+         }
+     }
