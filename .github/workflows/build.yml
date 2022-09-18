@@ -19,8 +19,8 @@ jobs:
               uses: actions/setup-java@v3.1.0
               with:
                   java-version: ${{ matrix.java }}
-                  distribution: 'temurin'
-            - name: Clone, patch and build
+                  distribution: temurin
+            - name: Clone, patch and build PR ${{ github.event.inputs.pr }}
               run: |                   
                   git config --global user.email "no-reply@github.com"
                   git config --global user.name "Github Actions"
