@@ -38,4 +38,4 @@ jobs:
             - uses: actions/upload-artifact@v3
               with:
                 name: paperclips
-                path: Paper/build/libs/
+                path: Paper/build/libs/paper-paperclip-*.jar
