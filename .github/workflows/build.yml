@@ -34,8 +34,8 @@ jobs:
             - uses: actions/upload-artifact@v3
               with:
                 name: api
-                path: Paper-API/build/libs/
+                path: Paper/Paper-API/build/libs/
             - uses: actions/upload-artifact@v3
               with:
                 name: paperclips
-                path: build/libs/
+                path: Paper/build/libs/
